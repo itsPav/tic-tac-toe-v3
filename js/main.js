@@ -1,6 +1,7 @@
 const boardDiv = document.getElementById('board');
 const startScreen = document.getElementById('start');
 const winScreen = document.getElementById('finish');
+const endMessage = document.getElementsByClassName('message')[0];
 
 // adding event listener to the box classes
 const boxs = document.getElementsByClassName('box');
@@ -15,12 +16,12 @@ startButton.addEventListener('click', () => {
     startScreen.style.display = 'none';
     boardDiv.style.display = 'block';
     player1.className = 'players active';
+    addEvents();
 });
 
 newGame.addEventListener('click', () => {
     winScreen.style.display = 'none';
     boardDiv.style.display = 'block';
-    player1.className = 'players active';
     clearBoard();
 });
 
@@ -50,25 +51,35 @@ function playXO() {
         {
             boardDiv.style.display = 'none';
             winScreen.style.display = 'block';  
+            winScreen.className = 'screen screen-win screen-win-tie';
+            endMessage.innerHTML = 'Tie';
         }
 }
 
 function clearBoard() {
+    player1.className = 'players active';
+    player2.className = 'players';
+
     for (let index = 0; index < boxs.length; index++) {
+
         if(boxs[index].className == 'box box-filled-1' || boxs[index].className == 'box box-filled-2')
         {
-            boxs[index].className == 'box';
+            console.log('yes this works');
+            boxs[index].className = 'box';
+            boxs[index].style.backgroundImage = '';
         }
     }
     win = 0;
     plays = 0;
+    addEvents();
 }
 
-for (let index = 0; index < boxs.length; index      ++) {
-    boxs[index].addEventListener('mouseenter', mouseEnter,true);
-    boxs[index].addEventListener('mouseleave', mouseLeave, true);
-    boxs[index].addEventListener('click', mouseClick, true);
-
+function addEvents() {
+    for (let index = 0; index < boxs.length; index      ++) {
+        boxs[index].addEventListener('mouseenter', mouseEnter,true);
+        boxs[index].addEventListener('mouseleave', mouseLeave, true);
+        boxs[index].addEventListener('click', mouseClick, true);
+    }
 }
 
 // mouse enter
