@@ -43,7 +43,8 @@ aiButton.addEventListener('click', () => {
 
 newGame.addEventListener('click', () => {
     winScreen.style.display = 'none';
-    boardDiv.style.display = 'block';
+    boardDiv.style.display = 'none';
+    startScreen.style.display = 'block';
     clearBoard();
 });
 
@@ -132,7 +133,7 @@ function mouseClick(e) {
     // pass the className, player, and the li index to boardCheck
     boardCheck(currPlayer, index);   
     playXO();
-    
+
     // check if aiGame
     if(aiGame == true) {
         randomPlay();
