@@ -7,7 +7,8 @@ const endMessage = document.getElementsByClassName('message')[0];
 const boxs = document.getElementsByClassName('box');
 
 const startButton = document.getElementsByClassName('button')[0];
-const newGame = document.getElementsByClassName('button')[1];
+const aiButton = document.getElementById('aiGame')
+const newGame = document.getElementsByClassName('button')[2];
 
 const player1 = document.getElementById('player1');
 const player2 = document.getElementById('player2');
@@ -27,6 +28,17 @@ startButton.addEventListener('click', () => {
     name = document.getElementsByTagName('input')[0].value;
     nameHeader.innerHTML = name;
     addEvents();
+    aiGame = false;
+});
+
+aiButton.addEventListener('click', () => {
+    startScreen.style.display = 'none';
+    boardDiv.style.display = 'block';
+    player1.className = 'players active';
+    name = document.getElementsByTagName('input')[0].value;
+    nameHeader.innerHTML = name;
+    addEvents();
+    aiGame = true;
 });
 
 newGame.addEventListener('click', () => {
@@ -40,6 +52,7 @@ newGame.addEventListener('click', () => {
 var currPlayer = 0;
 var win = 0;
 var plays = 0;
+var aiGame = false;
 
 function playXO() {
 
@@ -119,6 +132,11 @@ function mouseClick(e) {
     // pass the className, player, and the li index to boardCheck
     boardCheck(currPlayer, index);   
     playXO();
+    
+    // check if aiGame
+    if(aiGame == true) {
+        randomPlay();
+    }
 }
 
 // check index of clicked li
@@ -133,6 +151,14 @@ function nodeIndex(node) {
 
 // check if won
 function boardCheck(player, boxIndex) {
+
+    if(plays == 9)
+    {
+        boardDiv.style.display = 'none';
+        winScreen.style.display = 'block';  
+        winScreen.className = 'screen screen-win screen-win-tie';
+        endMessage.innerHTML = "It's a Tie!";
+    }
 
     // vertical check
     if(boxs[boxIndex].className == boxs[0].className && boxs[boxIndex].className == boxs[3].className && boxs[boxIndex].className == boxs[6].className) {
@@ -262,12 +288,34 @@ function boardCheck(player, boxIndex) {
             endMessage.innerHTML = 'Winner';
         }
     }
+}
 
-    if(plays === 9)
-    {
-        boardDiv.style.display = 'none';
-        winScreen.style.display = 'block';  
-        winScreen.className = 'screen screen-win screen-win-tie';
-        endMessage.innerHTML = "It's a Tie!";
+// array to hold empty box locations
+var emptyBoxes = [];
+
+// AI player
+function randomPlay() {
+    // loop through all the boxes
+
+    if(plays < 9) {
+        for (let index = 0; index < boxs.length; index += 1) {
+            if(boxs[index].className != 'box box-filled-1' && boxs[index].className != 'box box-filled-2') {
+                emptyBoxes.push(boxs[index]);
+            }
+        }
+
+        // choose random box and place player2 Class
+        var randomBox = emptyBoxes[Math.floor(Math.random()*emptyBoxes.length)];
+
+        randomBox.className = 'box box-filled-2';
+
+        player1.className = 'players active';
+        player2.className = 'players';
+        currPlayer = 0;
+        plays += 1;
+
+        emptyBoxes = [];
+        var index = nodeIndex(randomBox);
+        boardCheck(currPlayer, index);   
     }
 }
