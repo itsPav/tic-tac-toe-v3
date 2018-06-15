@@ -175,6 +175,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }    
     if(boxs[boxIndex].className == boxs[1].className && boxs[boxIndex].className == boxs[4].className && boxs[boxIndex].className == boxs[7].className) {
@@ -190,6 +191,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }   
     if(boxs[boxIndex].className == boxs[2].className && boxs[boxIndex].className == boxs[5].className && boxs[boxIndex].className == boxs[8].className) {
@@ -205,6 +207,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }   
 
@@ -222,6 +225,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }    
     if(boxs[boxIndex].className == boxs[3].className && boxs[boxIndex].className == boxs[4].className && boxs[boxIndex].className == boxs[5].className) {
@@ -237,6 +241,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }   
     if(boxs[boxIndex].className == boxs[6].className && boxs[boxIndex].className == boxs[7].className && boxs[boxIndex].className == boxs[8].className) {
@@ -252,6 +257,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }   
 
@@ -270,6 +276,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }
     
@@ -287,6 +294,7 @@ function boardCheck(player, boxIndex) {
             winScreen.style.display = 'block';  
             winScreen.className = 'screen screen-win screen-win-two';
             endMessage.innerHTML = 'Winner';
+            winnerName.innerHTML = '';
         }
     }
 }
